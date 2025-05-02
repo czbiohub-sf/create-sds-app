@@ -2,6 +2,8 @@
 
 This document summarizes the main UI components available in the Science Design System (SDS) for an AI assistant to understand the available building blocks. The AI should use SDS components exclusively to build the UI. Regular Material UI components should not be used.
 
+Tailwind styles can be found in `./SDS Tailwind.json`. It is also exported from the SDS library itself, but is left here for easy AI reference.
+
 ## Installation
 
 **Currently SDS uses Material UI v5**

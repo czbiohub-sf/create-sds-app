@@ -1,5 +1,5 @@
 import { signIn } from "@/auth";
-import { StyledButton } from "@/app/style";
+import { Button } from "@czi-sds/components";
 
 export default function SignIn() {
   return (
@@ -9,9 +9,9 @@ export default function SignIn() {
         await signIn("okta");
       }}
     >
-      <StyledButton type="submit" sdsType="primary" sdsStyle="rounded">
+      <Button type="submit" sdsType="primary" sdsStyle="rounded">
         Sign in with Okta
-      </StyledButton>
+      </Button>
     </form>
   );
 }

@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CustomThemeProvider } from "./common/CustomThemeProvider";
-import { NavigationHeader, NavigationFooter } from "@czi-sds/components";
 import BProgressProvider from "./common/BProgressProvider";
+import { NavBar, Footer } from "@/components/NavBarAndFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,15 +24,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="h-full">
+      <body className={`${inter.className} h-full`}>
         <BProgressProvider>
           <AppRouterCacheProvider options={CACHE_PROVIDER_OPTIONS}>
             <CustomThemeProvider>
-              <main>
-                <NavigationHeader title="Placeholder Site Title" />
-                {children}
-                <NavigationFooter title="Placeholder Site Title" />
+              <main className="flex flex-col min-h-screen">
+                <NavBar />
+                <div className="flex-grow">{children}</div>
+                <Footer />
               </main>
             </CustomThemeProvider>
           </AppRouterCacheProvider>

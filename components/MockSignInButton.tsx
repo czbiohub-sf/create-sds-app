@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import { StyledButton } from "@/app/style"; // Assuming style imports from app/style
+import { Button } from "@czi-sds/components";
 
 interface MockSignInButtonProps {
   userId: string;
@@ -13,8 +13,8 @@ export default function MockSignInButton({ userId }: MockSignInButtonProps) {
   };
 
   return (
-    <StyledButton onClick={handleSignIn} sdsType="secondary" sdsStyle="rounded">
+    <Button onClick={handleSignIn} sdsType="secondary" sdsStyle="rounded">
       Log in as {userId}
-    </StyledButton>
+    </Button>
   );
 }
