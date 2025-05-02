@@ -3,6 +3,7 @@ import { StyledButton } from "./style";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
 import { auth } from "@/auth";
+import MockSignInButton from "@/components/MockSignInButton";
 
 export default async function Home() {
   const session = await auth();
@@ -40,6 +41,13 @@ export default async function Home() {
 
         <SignIn />
         <SignOut />
+        {process.env.NODE_ENV === "development" && (
+          <>
+            <MockSignInButton userId="mockuser1" />
+            <MockSignInButton userId="mockuser2" />
+            <MockSignInButton userId="mockuser3" />
+          </>
+        )}
       </Center>
 
       <Grid>
