@@ -1,7 +1,12 @@
 import { Card, Center, Code, Description, Grid, Main } from "@/app/style";
 import { StyledButton } from "./style";
+import SignIn from "@/components/sign-in";
+import { SignOut } from "@/components/sign-out";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
     <Main>
       <Description>
@@ -9,6 +14,7 @@ export default function Home() {
           Get started by editing&nbsp;
           <Code>app/page.tsx</Code>
         </p>
+        <p>Session: {JSON.stringify(session)}</p>
       </Description>
 
       <Center>
@@ -31,6 +37,9 @@ export default function Home() {
         <StyledButton sdsType="primary" sdsStyle="minimal">
           Primary Minimal
         </StyledButton>
+
+        <SignIn />
+        <SignOut />
       </Center>
 
       <Grid>
