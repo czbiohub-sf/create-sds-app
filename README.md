@@ -6,13 +6,6 @@
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
-
-1. Create a new project: Run `npx create-next-app --example https://github.com/chanzuckerberg/create-sds-app YOUR_PROJECT_NAME`
-2. `cd` into the new project directory and run `yarn && yarn dev` to start developing the app!
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 ### Light Mode
 
 <p align="center">
@@ -51,3 +44,39 @@ This project adheres to the Contributor Covenant [code of conduct](https://githu
 ## Reporting Security Issues
 
 If you believe you have found a security issue, please responsibly disclose by contacting us at [security@chanzuckerberg.com](mailto:security@chanzuckerberg.com).
+
+## Development Setup
+
+1.  **Set up Environment Variables:**
+    Create a `.env` file in the project root and add the following variables:
+
+    ```bash
+    AUTH_SECRET="generate with npx auth"
+    AUTH_OKTA_ID=""
+    AUTH_OKTA_SECRET=""
+    AUTH_OKTA_ISSUER=""
+    DATABASE_URL="postgresql://user:password@localhost:5432/dev_db" # to use dev docker db
+    ```
+
+2.  **Start the Database:**
+    Ensure you have Docker installed and running. Then, start the PostgreSQL container:
+
+    ```bash
+    docker-compose up -d
+    ```
+
+3.  **Apply Database Schema:**
+    Install dependencies if you haven't already (`yarn`). Then, apply the latest database schema changes defined in `db/schema.ts`:
+
+    ```bash
+    npx drizzle-kit push
+    ```
+
+4.  **Run the Development Server:**
+    Start the application's development server (assuming Next.js):
+
+    ```bash
+    yarn dev
+    ```
+
+    The application should now be running locally, connected to the Dockerized PostgreSQL database.
