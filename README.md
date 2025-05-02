@@ -73,10 +73,10 @@ If you believe you have found a security issue, please responsibly disclose by c
     ```
 
 4.  **Run the Development Server:**
-    Start the application's development server (assuming Next.js):
+    Start the application's development server (Next.js):
 
     ```bash
     yarn dev
     ```
 
-    The application should now be running locally, connected to the Dockerized PostgreSQL database.
+    The application should now be running locally at `http://localhost:3000`, connected to the Dockerized PostgreSQL database.
