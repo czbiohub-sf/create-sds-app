@@ -14,11 +14,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ### Light Mode
+
 <p align="center">
   <img width="800" alt="Light Mode" src="https://github.com/user-attachments/assets/ea144366-1fdb-4aad-95dc-e6e419abb0fa">
 </p>
 
 ### Dark Mode
+
 <p align="center">
   <img width="800" alt="Dark Mode" src="https://github.com/user-attachments/assets/8dd94480-35c0-4bd4-89b4-495fa4b1b67d">
 </p>
