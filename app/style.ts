@@ -85,7 +85,6 @@ export const Main = styled.main`
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
-  min-height: 100vh;
   ${(props: CommonThemeProps) => {
     const colors = getColors(props);
 

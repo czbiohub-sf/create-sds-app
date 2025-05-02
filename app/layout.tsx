@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CustomThemeProvider } from "./common/CustomThemeProvider";
+import { NavigationHeader, NavigationFooter } from "@czi-sds/components";
+import BProgressProvider from "./common/BProgressProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +26,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppRouterCacheProvider options={CACHE_PROVIDER_OPTIONS}>
-          <CustomThemeProvider>{children}</CustomThemeProvider>
-        </AppRouterCacheProvider>
+        <BProgressProvider>
+          <AppRouterCacheProvider options={CACHE_PROVIDER_OPTIONS}>
+            <CustomThemeProvider>
+              <main>
+                <NavigationHeader title="Placeholder Site Title" />
+                {children}
+                <NavigationFooter title="Placeholder Site Title" />
+              </main>
+            </CustomThemeProvider>
+          </AppRouterCacheProvider>
+        </BProgressProvider>
       </body>
     </html>
   );
