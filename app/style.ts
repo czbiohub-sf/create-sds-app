@@ -76,6 +76,7 @@ export const Center = styled.div`
   align-items: center;
   position: relative;
   gap: 1rem;
+  flex-wrap: wrap;
 `;
 
 export const Main = styled.main`
@@ -135,6 +136,7 @@ export const Main = styled.main`
 
     ${Center} {
       padding: 4rem 0 6rem;
+      flex-direction: column;
     }
 
     ${Center}::before {

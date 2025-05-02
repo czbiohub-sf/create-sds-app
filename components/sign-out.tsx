@@ -1,4 +1,5 @@
 import { signOut } from "@/auth";
+import { StyledButton } from "@/app/style";
 
 export function SignOut() {
   return (
@@ -8,7 +9,9 @@ export function SignOut() {
         await signOut();
       }}
     >
-      <button type="submit">Sign Out</button>
+      <StyledButton type="submit" sdsType="secondary" sdsStyle="rounded">
+        Sign Out
+      </StyledButton>
     </form>
   );
 }
