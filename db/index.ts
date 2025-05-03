@@ -15,7 +15,7 @@ if (!process.env.DATABASE_URL) {
 if (process.env.DATABASE_URL.includes("neon.tech")) {
   console.log("Using Neon database connection");
   const sql = neon(process.env.DATABASE_URL);
-  // Use drizzleNeon for NeonDB
+  // Use drizzleNeon for Neon
   db = drizzleNeon(sql);
 } else {
   console.log("Using local PostgreSQL database connection");
