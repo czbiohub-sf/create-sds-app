@@ -52,9 +52,6 @@ If you believe you have found a security issue, please responsibly disclose by c
 
     ```bash
     AUTH_SECRET="generate with npx auth"
-    AUTH_OKTA_ID=""
-    AUTH_OKTA_SECRET=""
-    AUTH_OKTA_ISSUER=""
     DATABASE_URL="postgresql://user:password@localhost:5432/dev_db" # to use dev docker db
     ```
 

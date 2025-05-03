@@ -22,7 +22,16 @@ const mockUsers = {
   },
 };
 
-const providers: Provider[] = [Okta];
+const providers: Provider[] = [];
+
+// Conditionally add Okta provider if environment variables are set
+if (
+  process.env.AUTH_OKTA_ID &&
+  process.env.AUTH_OKTA_SECRET &&
+  process.env.AUTH_OKTA_ISSUER
+) {
+  providers.push(Okta);
+}
 
 // Conditionally add Credentials provider in development
 if (process.env.NODE_ENV === "development") {
