@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "[ \"$MIGRATE_DB_ON_BUILD\" = \"true\" ] && npm run db:push; next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "db:push": "drizzle-kit push"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
