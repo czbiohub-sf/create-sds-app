@@ -9,12 +9,7 @@ interface MockSignInButtonProps {
 
 export default function MockSignInButton({ userId }: MockSignInButtonProps) {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await mockLoginAction(userId);
-      }}
-    >
+    <form action={mockLoginAction.bind(null, userId)}>
       <Button type="submit" sdsType="secondary" sdsStyle="rounded">
         Log in as {userId}
       </Button>
