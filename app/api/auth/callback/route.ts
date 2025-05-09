@@ -25,22 +25,23 @@ const AUTH_ERROR_MESSAGES = {
 
 export async function GET(request: NextRequest) {
   try {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const searchParams = request.nextUrl.searchParams;
     const code = searchParams.get("code");
     const state = searchParams.get("state");
     const error = searchParams.get("error");
     const errorDescription = searchParams.get("error_description");
 
+    const oauthStateCookie = cookieStore.get("oauth_state");
+    const codeVerifierCookie = cookieStore.get("code_verifier");
+
     console.log("OAuth Callback Parameters:", {
       code: code ? "present" : "missing",
       state: state ? "present" : "missing",
       error,
       errorDescription,
-      savedState: cookieStore.get("oauth_state")?.value ? "present" : "missing",
-      codeVerifier: cookieStore.get("code_verifier")?.value
-        ? "present"
-        : "missing",
+      savedState: oauthStateCookie?.value ? "present" : "missing",
+      codeVerifier: codeVerifierCookie?.value ? "present" : "missing",
     });
 
     if (error) {
@@ -48,8 +49,8 @@ export async function GET(request: NextRequest) {
       return createAuthResponse("Authentication Cancelled", "AUTH_CANCELLED");
     }
 
-    const savedState = cookieStore.get("oauth_state")?.value;
-    const codeVerifier = cookieStore.get("code_verifier")?.value;
+    const savedState = oauthStateCookie?.value;
+    const codeVerifier = codeVerifierCookie?.value;
 
     if (!code) {
       console.error("Missing authorization code");
