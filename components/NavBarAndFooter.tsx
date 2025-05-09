@@ -1,9 +1,9 @@
-import { auth } from "@/auth";
 import { NavigationHeader, NavigationFooter } from "@czi-sds/components";
+import { getCurrentUser } from "@/app/lib/actions";
 
 export async function NavBar() {
-  const session = await auth();
-  const loggedIn = session?.user !== undefined;
+  const user = await getCurrentUser();
+  const loggedIn = user !== null;
 
   return (
     <NavigationHeader
@@ -14,9 +14,7 @@ export async function NavBar() {
       buttons={[
         {
           sdsType: "secondary",
-          children: loggedIn
-            ? `Welcome, ${session?.user?.name}`
-            : "Not signed in",
+          children: loggedIn ? `Welcome, ${user?.name}` : "Not signed in",
         },
       ]}
     />

@@ -1,16 +1,13 @@
-import { signOut } from "@/auth";
+"use client";
+
 import { Button } from "@czi-sds/components";
+import { logoutAction } from "@/app/lib/actions";
 
 export function SignOut() {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signOut();
-      }}
-    >
+    <form action={logoutAction}>
       <Button type="submit" sdsType="secondary" sdsStyle="rounded">
-        Sign Out
+        Sign out
       </Button>
     </form>
   );

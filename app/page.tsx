@@ -1,11 +1,11 @@
 import { Button } from "@czi-sds/components";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
-import { auth } from "@/auth";
+import { getCurrentUser } from "@/app/lib/actions";
 import MockSignInButton from "@/components/MockSignInButton";
 
 export default async function Home() {
-  const session = await auth();
+  const user = await getCurrentUser();
 
   return (
     <main className="flex flex-col items-center justify-between p-24 bg-sds-gray-100 text-sds-gray-900 dark:bg-sds-gray-800 dark:text-sds-gray-100">
@@ -14,9 +14,7 @@ export default async function Home() {
           Get started by editing&nbsp;
           <code className="font-bold font-sds-code">app/page.tsx</code>
         </p>
-        <p className="relative m-0 p-sds-l">
-          Session: {JSON.stringify(session)}
-        </p>
+        <p className="relative m-0 p-sds-l">User: {JSON.stringify(user)}</p>
       </div>
 
       <div className="relative flex place-items-center gap-sds-l flex-wrap justify-center items-center max-md:flex-col max-md:py-16 max-md:pb-24 my-16">
@@ -40,14 +38,27 @@ export default async function Home() {
           Primary Minimal
         </Button>
 
-        <SignIn />
-        <SignOut />
-        {process.env.NODE_ENV === "development" && (
-          <>
-            <MockSignInButton userId="mockuser1" />
-            <MockSignInButton userId="mockuser2" />
-            <MockSignInButton userId="mockuser3" />
-          </>
+        {!user ? (
+          <div className="mt-5">
+            <SignIn />
+            {process.env.NODE_ENV === "development" && (
+              <div className="mt-5 flex flex-col gap-2">
+                <p className="text-sm text-sds-gray-600 dark:text-sds-gray-400">
+                  Development accounts:
+                </p>
+                <div className="flex gap-2">
+                  <MockSignInButton userId="mockuser1" />
+                  <MockSignInButton userId="mockuser2" />
+                  <MockSignInButton userId="mockuser3" />
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="mt-5 flex gap-2 items-center">
+            <p>Welcome, {user.name}!</p>
+            <SignOut />
+          </div>
         )}
       </div>
 
@@ -88,7 +99,7 @@ export default async function Home() {
         </a>
 
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://nextjs.org/learn?utm_source=create-next-app&amp;utm_medium=appdir-template&amp;utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
           className="group block p-sds-l rounded-xl border border-transparent transition-colors duration-200 hover:bg-sds-gray-100 hover:border-sds-gray-300 dark:hover:bg-sds-gray-200 dark:hover:border-sds-gray-400 max-md:px-sds-xxl max-md:py-sds-l"
