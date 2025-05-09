@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { User } from "./mock-data";
-import { getCurrentUser } from "./actions";
 
 export function useSession() {
   const [session, setSession] = useState<{
@@ -16,8 +15,13 @@ export function useSession() {
   useEffect(() => {
     async function fetchSession() {
       try {
-        const user = await getCurrentUser();
-        setSession({ user, loading: false });
+        const response = await fetch("/api/auth/session");
+        if (response.ok) {
+          const data = await response.json();
+          setSession({ user: data.user, loading: false });
+        } else {
+          setSession({ user: null, loading: false });
+        }
       } catch (error) {
         console.error("Error fetching session:", error);
         setSession({ user: null, loading: false });

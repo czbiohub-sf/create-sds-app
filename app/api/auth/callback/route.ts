@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import {
   OKTA_CLIENT_ID,
@@ -113,17 +114,15 @@ export async function GET(request: NextRequest) {
       .sign(secret);
 
     cookieStore.set("auth-token", token, COOKIE_CONFIG.AUTH_TOKEN);
-
     cookieStore.delete("oauth_state");
     cookieStore.delete("code_verifier");
 
-    return createAuthResponse("Authentication Successful", "AUTH_SUCCESS");
+    return NextResponse.redirect(new URL("/", request.url));
   } catch (error) {
     console.error("Error in authentication callback:", error);
-    return createAuthResponse(
-      AUTH_ERROR_TITLE,
-      AUTH_ERROR_MESSAGES.SERVER_ERROR,
-      500,
-    );
+
+    const url = new URL("/", request.url);
+    url.searchParams.set("error", "auth_error");
+    return NextResponse.redirect(url);
   }
 }
