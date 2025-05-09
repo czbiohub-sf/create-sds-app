@@ -43,7 +43,8 @@ export const mockUsers = {
 
 export async function getCurrentUser(): Promise<User | null> {
   try {
-    const token = cookies().get(AUTH_COOKIE_NAME)?.value;
+    const cookieStore = await cookies();
+    const token = cookieStore.get(AUTH_COOKIE_NAME)?.value;
     if (!token) return null;
 
     const secret = new TextEncoder().encode(JWT_SECRET);
@@ -53,18 +54,21 @@ export async function getCurrentUser(): Promise<User | null> {
       return payload.user as User;
     } catch (jwtError) {
       console.error("JWT verification failed:", jwtError);
-      cookies().delete(AUTH_COOKIE_NAME);
+      const cookieStore = await cookies();
+      cookieStore.delete(AUTH_COOKIE_NAME);
       return null;
     }
   } catch (error) {
     console.error("Error getting current user:", error);
-    cookies().delete(AUTH_COOKIE_NAME);
+    const cookieStore = await cookies();
+    cookieStore.delete(AUTH_COOKIE_NAME);
     return null;
   }
 }
 
 export async function logoutAction() {
-  cookies().delete(AUTH_COOKIE_NAME);
+  const cookieStore = await cookies();
+  cookieStore.delete(AUTH_COOKIE_NAME);
   revalidatePath("/");
   redirect("/");
 }
@@ -86,9 +90,10 @@ export async function mockLoginAction(userId: string) {
     .setExpirationTime("24h")
     .sign(secret);
 
-  cookies().set(AUTH_COOKIE_NAME, token, {
+  const cookieStore = await cookies();
+  cookieStore.set(AUTH_COOKIE_NAME, token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: (process.env.NODE_ENV as string) === "production",
     maxAge: 60 * 60 * 24, // 1 day
     path: "/",
     sameSite: "lax",
