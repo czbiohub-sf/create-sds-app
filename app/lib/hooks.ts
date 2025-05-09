@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { User, getCurrentUser } from "./actions";
+import { User } from "./mock-data";
+import { getCurrentUser } from "./actions";
 
 export function useSession() {
   const [session, setSession] = useState<{
