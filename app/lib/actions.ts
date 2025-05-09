@@ -5,41 +5,9 @@ import { redirect } from "next/navigation";
 import * as jose from "jose";
 import { JWT_SECRET } from "./constants";
 import { revalidatePath } from "next/cache";
+import { User, mockUsers } from "./mock-data";
 
-const DEFAULT_PROFILE_IMAGE = "/default-profile.jpg";
 const AUTH_COOKIE_NAME = "auth-token";
-
-export type User = {
-  id: string;
-  name: string;
-  email: string;
-  picture?: string;
-  isMockUser?: boolean;
-};
-
-export const mockUsers = {
-  mockuser1: {
-    id: "mockuser1",
-    name: "Mock User One",
-    email: "mock1@example.com",
-    picture: DEFAULT_PROFILE_IMAGE,
-    isMockUser: true,
-  },
-  mockuser2: {
-    id: "mockuser2",
-    name: "Mock User Two",
-    email: "mock2@example.com",
-    picture: DEFAULT_PROFILE_IMAGE,
-    isMockUser: true,
-  },
-  mockuser3: {
-    id: "mockuser3",
-    name: "Mock User Three",
-    email: "mock3@example.com",
-    picture: DEFAULT_PROFILE_IMAGE,
-    isMockUser: true,
-  },
-};
 
 export async function getCurrentUser(): Promise<User | null> {
   try {
