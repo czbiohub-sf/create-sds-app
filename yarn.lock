@@ -1362,7 +1362,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^6.0.0-dev.20240529-082515-213b5e33ab, @mui/utils@npm:^6.4.3":
+"@mui/utils@npm:^6.0.0-dev.20240529-082515-213b5e33ab":
   version: 6.4.3
   resolution: "@mui/utils@npm:6.4.3"
   dependencies:
@@ -2718,7 +2718,6 @@ __metadata:
     "@mui/lab": "npm:^5.0.0-alpha.159"
     "@mui/material": "npm:^5.15.3"
     "@mui/material-nextjs": "npm:^6.4.3"
-    "@mui/utils": "npm:^6.4.3"
     "@neondatabase/serverless": "npm:^1.0.0"
     "@tailwindcss/typography": "npm:^0.5.16"
     "@types/node": "npm:^20"
