@@ -48,7 +48,7 @@ If you believe you have found a security issue, please responsibly disclose by c
 ## Development Setup
 
 1.  **Set up Environment Variables:**
-    Create a `.env` file in the project root and add the following variables:
+    Create a `.env.local` file in the project root and add the following variables:
 
     ```bash
     AUTH_SECRET="generate with npx auth"
