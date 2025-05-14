@@ -18,6 +18,11 @@ export async function NavBar() {
             ? `Welcome, ${session?.user?.name}`
             : "Not signed in",
         },
+        {
+          sdsType: "tertiary",
+          children: "Form Generator",
+          href: "/form-generator",
+        },
       ]}
     />
   );
