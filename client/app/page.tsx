@@ -1,12 +1,9 @@
 import { Button } from "@czi-sds/components";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
-import { auth } from "/auth";
 import MockSignInButton from "@/components/MockSignInButton";
 
 export default async function Home() {
-  const session = await auth();
-
   return (
     <main className="flex flex-col items-center justify-between p-24 bg-sds-gray-100 text-sds-gray-900 dark:bg-sds-gray-800 dark:text-sds-gray-100">
       <div className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
@@ -14,9 +11,7 @@ export default async function Home() {
           Get started by editing&nbsp;
           <code className="font-bold font-sds-code">app/page.tsx</code>
         </p>
-        <p className="relative m-0 p-sds-l">
-          Session: {JSON.stringify(session)}
-        </p>
+        <p className="relative m-0 p-sds-l">Session: Unimplemented</p>
       </div>
 
       <div className="relative flex place-items-center gap-sds-l flex-wrap justify-center items-center max-md:flex-col max-md:py-16 max-md:pb-24 my-16">

@@ -1,6 +1,5 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { Button } from "@czi-sds/components";
 
 interface MockSignInButtonProps {
@@ -9,7 +8,7 @@ interface MockSignInButtonProps {
 
 export default function MockSignInButton({ userId }: MockSignInButtonProps) {
   const handleSignIn = () => {
-    signIn("credentials", { userId, redirect: true });
+    alert("Unimplemented");
   };
 
   return (
