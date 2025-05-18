@@ -7299,6 +7299,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"server@workspace:server":
+  version: 0.0.0-use.local
+  resolution: "server@workspace:server"
+  languageName: unknown
+  linkType: soft
+
 "set-function-length@npm:^1.2.2":
   version: 1.2.2
   resolution: "set-function-length@npm:1.2.2"

@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "yarn workspaces foreach --all run dev"
+    "dev:all": "yarn workspaces foreach --all -pi run dev"
   },
   "workspaces": [
-    "client"
+    "client",
+    "server"
   ],
   "packageManager": "yarn@4.1.1"
 }
