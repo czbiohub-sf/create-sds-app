@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "yarn workspaces foreach --all -pi run dev"
+    "dev:all": "concurrently \"yarn workspace server dev\" \"yarn workspace client dev\" --names \"🗄️ ,🖥️ \""
   },
   "workspaces": [
     "client",
     "server"
   ],
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.1.1",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
