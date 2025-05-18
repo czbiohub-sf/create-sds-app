@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { auth } from "/auth";
 import { NavigationHeader, NavigationFooter } from "@czi-sds/components";
 
 export async function NavBar() {

@@ -1,7 +1,7 @@
 import { Button } from "@czi-sds/components";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
-import { auth } from "@/auth";
+import { auth } from "/auth";
 import MockSignInButton from "@/components/MockSignInButton";
 
 export default async function Home() {
