@@ -36,6 +36,17 @@ yarn dev:all
 
 The Next.js app will be available at `http://localhost:3000` and the FastAPI server will be available at `http://localhost:8000`.
 
+### Claude Code Integration
+
+This project includes Claude Code hooks that automatically run linting, type checking, and format checking after file modifications.
+
+To activate the hooks:
+1. Run `/hooks` in Claude Code
+2. Press Enter on "PostToolUse" to accept the hook (this is a safety confirmation)
+3. Restart Claude Code to ensure the hooks are fully loaded
+
+**Note:** These hooks only run when using Claude Code. They don't affect regular development or git commits.
+
 ## Code Quality Tools
 
 - **Formatting**: Prettier (client) and Ruff (server) - `yarn format:all`
