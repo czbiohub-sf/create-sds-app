@@ -35,3 +35,11 @@ yarn dev:all
 ```
 
 The Next.js app will be available at `http://localhost:3000` and the FastAPI server will be available at `http://localhost:8000`.
+
+## Code Quality Tools
+
+- **Formatting**: Prettier (client) and Ruff (server) - `yarn format:all`
+- **Linting**: ESLint (client) and Ruff (server) - `yarn lint:all`
+- **Type Checking**: TypeScript (client) and mypy (server) - `yarn typecheck:all`
+
+Run format checks without modifying files: `yarn formatcheck:all`

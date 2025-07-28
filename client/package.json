@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "[ \"$MIGRATE_DB_ON_BUILD\" = \"true\" ] && npm run db:push; next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "db:push": "drizzle-kit push"
+    "formatcheck": "prettier --check ."
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",

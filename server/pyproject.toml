@@ -7,3 +7,9 @@ requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.115.12",
 ]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.17.0",
+    "ruff>=0.12.5",
+]

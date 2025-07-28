@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "concurrently \"yarn workspace server dev\" \"yarn workspace client dev\" --names \"🗄️ ,🖥️ \""
+    "dev:all": "concurrently \"yarn workspace server dev\" \"yarn workspace client dev\" --names \"🗄️ ,🖥️ \"",
+    "formatcheck:all": "yarn workspaces foreach --all -p run formatcheck",
+    "typecheck:all": "yarn workspaces foreach --all -p run typecheck",
+    "lint:all": "yarn workspaces foreach --all -p run lint",
+    "format:all": "yarn workspaces foreach --all -p run format"
   },
   "workspaces": [
     "client",
