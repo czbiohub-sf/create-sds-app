@@ -35,18 +35,26 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
-        if ! yarn workspace client lint 2>&1; then
-            echo "❌ Linting failed. Please fix the errors above." >&2
+        echo "Running lint check..." >&2
+        if ! OUTPUT=$(yarn workspace client lint 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn workspace client typecheck 2>&1; then
-            echo "❌ Type checking failed. Please fix the type errors above." >&2
+        echo "Running type check..." >&2
+        if ! OUTPUT=$(yarn workspace client typecheck 2>&1); then
+            echo "❌ Type checking failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn workspace client formatcheck 2>&1; then
-            echo "❌ Formatting check failed. Run 'yarn workspace client format' to fix." >&2
+        echo "Running format check..." >&2
+        if ! OUTPUT=$(yarn workspace client formatcheck 2>&1); then
+            echo "❌ Formatting check failed:" >&2
+            echo "$OUTPUT" >&2
+            echo "" >&2
+            echo "💡 Run 'yarn workspace client format' to fix formatting issues." >&2
             exit 2
         fi
         
@@ -55,18 +63,26 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
-        if ! yarn workspace server lint 2>&1; then
-            echo "❌ Linting failed. Please fix the errors above." >&2
+        echo "Running lint check..." >&2
+        if ! OUTPUT=$(yarn workspace server lint 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn workspace server typecheck 2>&1; then
-            echo "❌ Type checking failed. Please fix the type errors above." >&2
+        echo "Running type check..." >&2
+        if ! OUTPUT=$(yarn workspace server typecheck 2>&1); then
+            echo "❌ Type checking failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn workspace server formatcheck 2>&1; then
-            echo "❌ Formatting check failed. Run 'yarn workspace server format' to fix." >&2
+        echo "Running format check..." >&2
+        if ! OUTPUT=$(yarn workspace server formatcheck 2>&1); then
+            echo "❌ Formatting check failed:" >&2
+            echo "$OUTPUT" >&2
+            echo "" >&2
+            echo "💡 Run 'yarn workspace server format' to fix formatting issues." >&2
             exit 2
         fi
         
@@ -75,18 +91,26 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
-        if ! yarn lint:all 2>&1; then
-            echo "❌ Linting failed. Please fix the errors above." >&2
+        echo "Running lint check..." >&2
+        if ! OUTPUT=$(yarn lint:all 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn typecheck:all 2>&1; then
-            echo "❌ Type checking failed. Please fix the type errors above." >&2
+        echo "Running type check..." >&2
+        if ! OUTPUT=$(yarn typecheck:all 2>&1); then
+            echo "❌ Type checking failed:" >&2
+            echo "$OUTPUT" >&2
             exit 2
         fi
         
-        if ! yarn formatcheck:all 2>&1; then
-            echo "❌ Formatting check failed. Run 'yarn format:all' to fix." >&2
+        echo "Running format check..." >&2
+        if ! OUTPUT=$(yarn formatcheck:all 2>&1); then
+            echo "❌ Formatting check failed:" >&2
+            echo "$OUTPUT" >&2
+            echo "" >&2
+            echo "💡 Run 'yarn format:all' to fix formatting issues." >&2
             exit 2
         fi
     fi
