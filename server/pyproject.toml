@@ -13,3 +13,5 @@ dev = [
     "mypy>=1.17.0",
     "ruff>=0.12.5",
 ]
+[tool.uv]
+required-version = ">=0.7.5"
