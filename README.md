@@ -45,6 +45,8 @@ To activate the hooks:
 2. Press Enter on "PostToolUse" to accept the hook (this is a safety confirmation)
 3. Restart Claude Code to ensure the hooks are fully loaded
 
+**Important:** If you modify the hook scripts (`.claude/hooks/`), you need to repeat these steps to reload the updated hooks.
+
 **Note:** These hooks only run when using Claude Code. They don't affect regular development or git commits.
 
 ## Code Quality Tools
