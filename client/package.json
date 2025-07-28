@@ -9,7 +9,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
-    "formatcheck": "prettier --check ."
+    "formatcheck": "prettier --check .",
+    "generate": "openapi-typescript http://localhost:8000/openapi.json -o ./src/api/generated/types.ts",
+    "predev": "yarn generate"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
@@ -25,6 +27,7 @@
     "@mui/material-nextjs": "^6.4.3",
     "@mui/utils": "^6.4.3",
     "next": "^15.1.7",
+    "openapi-fetch": "^0.14.0",
     "react": ">=17.0.1",
     "react-dom": ">=17.0.1",
     "react-redux": "^9.1.0",
@@ -46,6 +49,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-sonarjs": "^0.23.0",
+    "openapi-typescript": "^7.8.0",
     "postcss": "^8.5.3",
     "prettier": "^3.1.0",
     "prettier-plugin-organize-imports": "^3.2.4",
