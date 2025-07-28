@@ -13,5 +13,69 @@ dev = [
     "mypy>=1.17.0",
     "ruff>=0.12.5",
 ]
+
 [tool.uv]
 required-version = ">=0.7.5"
+
+[tool.ruff]
+# Set maximum line length
+line-length = 88
+
+# Python version target
+target-version = "py310"
+
+[tool.ruff.lint]
+# Enable multiple rule sets for comprehensive linting
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort (import sorting)
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "SIM",    # flake8-simplify
+    "TCH",    # flake8-type-checking
+    "RUF",    # Ruff-specific rules
+    "PL",     # Pylint
+    "PERF",   # Performance rules
+]
+
+# Configure import sorting
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-sort-within-sections = true
+
+# Configure linting rules
+[tool.ruff.lint.per-file-ignores]
+# Allow unused imports in __init__.py files
+"__init__.py" = ["F401"]
+
+[tool.ruff.lint.pylint]
+# Set maximum arguments for functions
+max-args = 5
+# Set maximum branches
+max-branches = 12
+
+[tool.mypy]
+# Enable strict mode for comprehensive type checking
+strict = true
+# Additional strict options
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+no_implicit_reexport = true
+strict_equality = true
+
+# Per-module options
+[[tool.mypy.overrides]]
+module = "fastapi.*"
+ignore_missing_imports = true

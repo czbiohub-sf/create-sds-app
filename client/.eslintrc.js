@@ -37,6 +37,26 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react/jsx-no-target-blank": 0,
     "react/prop-types": "off",
+
+    // Stricter rules for AI agents
+    "no-unused-expressions": "error",
+    "no-unreachable": "error",
+    "prefer-const": "error",
+
+    // Complexity limits
+    "sonarjs/cognitive-complexity": ["error", 15],
+    complexity: ["error", 10],
+
+    // Prevent common AI mistakes
+    "no-duplicate-imports": "error",
+    "no-useless-return": "error",
+    "no-lonely-if": "error",
+    "no-else-return": ["error", { allowElseIf: false }],
+
+    // Consistency rules
+    "array-callback-return": "error",
+    "consistent-return": "error",
+    "no-param-reassign": "error",
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
