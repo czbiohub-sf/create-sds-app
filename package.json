@@ -7,7 +7,8 @@
     "formatcheck:all": "yarn workspaces foreach --all -p run formatcheck",
     "typecheck:all": "yarn workspaces foreach --all -p run typecheck",
     "lint:all": "yarn workspaces foreach --all -p run lint",
-    "format:all": "yarn workspaces foreach --all -p run format"
+    "format:all": "yarn workspaces foreach --all -p run format",
+    "generate": "yarn workspace client generate"
   },
   "workspaces": [
     "client",

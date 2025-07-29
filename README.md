@@ -8,7 +8,7 @@
 
 ## TODO
 
-- [ ] Automatic FastAPI type generation for TypeScript
+- [x] Automatic FastAPI type generation for TypeScript
 - [ ] Okta auth
 - [ ] Mock users
 - [ ] Cypress setup
@@ -35,6 +35,19 @@ yarn dev:all
 ```
 
 The Next.js app will be available at `http://localhost:3000` and the FastAPI server will be available at `http://localhost:8000`.
+
+### TypeScript Type Generation from OpenAPI
+
+This project automatically generates TypeScript types from the FastAPI OpenAPI schema:
+
+```bash
+# Generate types manually (can be run from anywhere in the project)
+yarn generate
+```
+
+The generated types are saved to `client/src/api/generated/types.ts` and provide full type safety when using the `openapi-fetch` client.
+
+**Note:** Make sure the FastAPI server is running on `http://localhost:8000` before generating types. You'll need to run this after making changes to your FastAPI endpoints.
 
 ### Claude Code Integration
 

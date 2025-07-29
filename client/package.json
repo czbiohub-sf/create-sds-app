@@ -10,8 +10,7 @@
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "formatcheck": "prettier --check .",
-    "generate": "openapi-typescript http://localhost:8000/openapi.json -o ./src/api/generated/types.ts",
-    "predev": "yarn generate"
+    "generate": "openapi-typescript http://localhost:8000/openapi.json -o ./src/api/generated/types.ts"
   },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
