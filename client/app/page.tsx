@@ -2,6 +2,7 @@ import { Button } from "@czi-sds/components";
 import SignIn from "@/components/sign-in";
 import { SignOut } from "@/components/sign-out";
 import MockSignInButton from "@/components/MockSignInButton";
+import ItemsPage from "@/components/ItemsPage";
 
 export default async function Home() {
   return (
@@ -44,6 +45,11 @@ export default async function Home() {
             <MockSignInButton userId="mockuser3" />
           </>
         )}
+      </div>
+
+      {/* OpenAPI-Fetch Example with Server Components */}
+      <div className="w-full max-w-5xl my-16">
+        <ItemsPage />
       </div>
 
       <div className="mb-32 grid grid-cols-1 max-md:mb-[120px] max-md:max-w-[320px] max-md:text-center md:grid-cols-2 lg:grid-cols-4 md:max-w-5xl w-full md:text-left gap-sds-m lg:mb-0">
