@@ -35,6 +35,13 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running format..." >&2
+        if ! OUTPUT=$(yarn workspace client format 2>&1); then
+            echo "❌ Formatting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running lint check..." >&2
         if ! OUTPUT=$(yarn workspace client lint 2>&1); then
             echo "❌ Linting failed:" >&2
@@ -49,20 +56,18 @@ if [[ -n "$MODIFIED_FILE" ]]; then
             exit 2
         fi
         
-        echo "Running format check..." >&2
-        if ! OUTPUT=$(yarn workspace client formatcheck 2>&1); then
-            echo "❌ Formatting check failed:" >&2
-            echo "$OUTPUT" >&2
-            echo "" >&2
-            echo "💡 Run 'yarn workspace client format' to fix formatting issues." >&2
-            exit 2
-        fi
-        
     elif is_server_file "$MODIFIED_FILE"; then
         echo "🐍 Server file modified: $MODIFIED_FILE"
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running format..." >&2
+        if ! OUTPUT=$(yarn workspace server format 2>&1); then
+            echo "❌ Formatting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running lint check..." >&2
         if ! OUTPUT=$(yarn workspace server lint 2>&1); then
             echo "❌ Linting failed:" >&2
@@ -77,20 +82,18 @@ if [[ -n "$MODIFIED_FILE" ]]; then
             exit 2
         fi
         
-        echo "Running format check..." >&2
-        if ! OUTPUT=$(yarn workspace server formatcheck 2>&1); then
-            echo "❌ Formatting check failed:" >&2
-            echo "$OUTPUT" >&2
-            echo "" >&2
-            echo "💡 Run 'yarn workspace server format' to fix formatting issues." >&2
-            exit 2
-        fi
-        
     else
         echo "📂 File outside client/server, running all checks..."
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running format..." >&2
+        if ! OUTPUT=$(yarn format:all 2>&1); then
+            echo "❌ Formatting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running lint check..." >&2
         if ! OUTPUT=$(yarn lint:all 2>&1); then
             echo "❌ Linting failed:" >&2
@@ -102,15 +105,6 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         if ! OUTPUT=$(yarn typecheck:all 2>&1); then
             echo "❌ Type checking failed:" >&2
             echo "$OUTPUT" >&2
-            exit 2
-        fi
-        
-        echo "Running format check..." >&2
-        if ! OUTPUT=$(yarn formatcheck:all 2>&1); then
-            echo "❌ Formatting check failed:" >&2
-            echo "$OUTPUT" >&2
-            echo "" >&2
-            echo "💡 Run 'yarn format:all' to fix formatting issues." >&2
             exit 2
         fi
     fi
