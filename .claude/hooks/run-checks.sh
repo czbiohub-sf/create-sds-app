@@ -35,6 +35,13 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running lint with auto-fix..." >&2
+        if ! OUTPUT=$(yarn workspace client lint --fix 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running format..." >&2
         if ! OUTPUT=$(yarn workspace client format 2>&1); then
             echo "❌ Formatting failed:" >&2
@@ -61,6 +68,13 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running lint with auto-fix..." >&2
+        if ! OUTPUT=$(yarn workspace server lint --fix 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running format..." >&2
         if ! OUTPUT=$(yarn workspace server format 2>&1); then
             echo "❌ Formatting failed:" >&2
@@ -87,6 +101,13 @@ if [[ -n "$MODIFIED_FILE" ]]; then
         cd "$CLAUDE_PROJECT_DIR"
         
         # Run checks and use exit code 2 for blocking errors
+        echo "Running lint with auto-fix..." >&2
+        if ! OUTPUT=$(yarn workspace client lint --fix 2>&1 && yarn workspace server lint --fix 2>&1); then
+            echo "❌ Linting failed:" >&2
+            echo "$OUTPUT" >&2
+            exit 2
+        fi
+        
         echo "Running format..." >&2
         if ! OUTPUT=$(yarn format:all 2>&1); then
             echo "❌ Formatting failed:" >&2
