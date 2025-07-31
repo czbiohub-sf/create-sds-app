@@ -5,6 +5,7 @@
 - Node.js v20 or above
 - Yarn v4
 - uv v0.7.5 or above (Python package manager)
+- Docker and Docker Compose
 
 ## TODO
 
@@ -27,14 +28,16 @@ yarn install
 cd server && uv sync
 ```
 
-3. Run the development server (which runs the client and server in parallel):
+3. Make sure Docker is running (required for PostgreSQL database)
+
+4. Run the development server (which runs the client, server, and database):
 
 ```bash
 # This command can be ran from anywhere in the project
 yarn dev:all
 ```
 
-The Next.js app will be available at `http://localhost:3000` and the FastAPI server will be available at `http://localhost:8000`.
+The Next.js app will be available at `http://localhost:3000`, the FastAPI server will be available at `http://localhost:8000`, and the database admin interface at `http://localhost:8000/admin`.
 
 ### TypeScript Type Generation from OpenAPI
 
