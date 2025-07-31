@@ -1,6 +1,13 @@
-from fastapi import FastAPI
+from typing import ClassVar
+
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from sqladmin import Admin, ModelView
+from sqlalchemy.orm import Session
+
+from database import Base, engine, get_db
+from models import Item as ItemModel
 
 app = FastAPI()
 
@@ -28,11 +35,26 @@ class ItemCreate(BaseModel):
     price: float
 
 
-# Example in-memory storage
-items: list[Item] = [
-    Item(id=1, name="Laptop", description="High-performance laptop", price=999.99),
-    Item(id=2, name="Mouse", description="Wireless mouse", price=29.99),
-]
+# Create database tables
+Base.metadata.create_all(bind=engine)
+
+# Create SQLAdmin
+admin = Admin(app, engine)
+
+
+# SQLAdmin ModelView for Item
+class ItemAdmin(ModelView, model=ItemModel):
+    column_list: ClassVar = [
+        ItemModel.id,
+        ItemModel.name,
+        ItemModel.description,
+        ItemModel.price,
+    ]
+    column_searchable_list: ClassVar = [ItemModel.name, ItemModel.description]
+    column_sortable_list: ClassVar = [ItemModel.id, ItemModel.name, ItemModel.price]
+
+
+admin.add_view(ItemAdmin)
 
 
 @app.get("/")
@@ -41,25 +63,40 @@ def read_root() -> dict[str, str]:
 
 
 @app.get("/items")
-def get_items() -> list[Item]:
-    return items
+def get_items(db: Session = Depends(get_db)) -> list[Item]:
+    db_items = db.query(ItemModel).all()
+    return [
+        Item(id=item.id, name=item.name, description=item.description, price=item.price)
+        for item in db_items
+    ]
 
 
 @app.get("/items/{item_id}")
-def get_item(item_id: int) -> Item | None:
-    for item in items:
-        if item.id == item_id:
-            return item
-    return None
+def get_item(item_id: int, db: Session = Depends(get_db)) -> Item:
+    db_item = db.query(ItemModel).filter(ItemModel.id == item_id).first()
+    if db_item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return Item(
+        id=db_item.id,
+        name=db_item.name,
+        description=db_item.description,
+        price=db_item.price,
+    )
 
 
 @app.post("/items")
-def create_item(item: ItemCreate) -> Item:
-    new_item = Item(
-        id=len(items) + 1,
+def create_item(item: ItemCreate, db: Session = Depends(get_db)) -> Item:
+    db_item = ItemModel(
         name=item.name,
         description=item.description,
         price=item.price,
     )
-    items.append(new_item)
-    return new_item
+    db.add(db_item)
+    db.commit()
+    db.refresh(db_item)
+    return Item(
+        id=db_item.id,
+        name=db_item.name,
+        description=db_item.description,
+        price=db_item.price,
+    )

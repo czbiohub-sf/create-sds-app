@@ -68,6 +68,16 @@
 - Use the development server (`yarn dev:all`) to preview changes
 - Review the frontend documentation files in `client/docs/` for UI component guidance
 
+### Commits
+
+**IMPORTANT**: Use Conventional Commit messages.
+
+The most important prefixes you should have in mind are:
+
+fix: which represents bug fixes, and correlates to a SemVer patch.
+feat: which represents a new feature, and correlates to a SemVer minor.
+feat!:, or fix!:, refactor!:, etc., which represent a breaking change (indicated by the !) and will result in a SemVer major.
+
 ### Getting Help
 
 When in doubt:
@@ -75,4 +85,3 @@ When in doubt:
 1. First, check the existing code for examples
 2. Review the documentation files in `client/docs/`
 3. Ask clarifying questions before implementing complex features
-

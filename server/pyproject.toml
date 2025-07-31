@@ -6,6 +6,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "fastapi[standard]>=0.115.12",
+    "sqlalchemy>=2.0.0",
+    "psycopg2-binary>=2.9.0",
+    "alembic>=1.13.0",
+    "sqladmin>=0.20.0",
 ]
 
 [dependency-groups]
@@ -51,6 +55,8 @@ force-sort-within-sections = true
 [tool.ruff.lint.per-file-ignores]
 # Allow unused imports in __init__.py files
 "__init__.py" = ["F401"]
+# Allow Depends() in function defaults for FastAPI
+"main.py" = ["B008"]
 
 [tool.ruff.lint.pylint]
 # Set maximum arguments for functions
@@ -78,4 +84,8 @@ strict_equality = true
 # Per-module options
 [[tool.mypy.overrides]]
 module = "fastapi.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sqlalchemy.*"
 ignore_missing_imports = true
