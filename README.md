@@ -65,6 +65,44 @@ To activate the hooks:
 
 **Note:** These hooks only run when using Claude Code. They don't affect regular development or git commits.
 
+### Devin AI Integration
+
+During the "Repo Setup" step in Devin, use the following configuration:
+
+- **Pull Latest Repo**: 
+
+(Leave as is)
+
+- **Update Dependencies**: 
+```
+yarn install && cd server && uv sync
+```
+
+- **Run Lint**: (put as separate commands in the list) 
+```
+yarn workspace client lint --fix
+yarn workspace server lint --fix
+yarn format:all
+yarn lint:all
+yarn typecheck:all
+```
+
+- **Run Tests**:
+
+None
+
+- **Run App**:
+```
+yarn dev:all
+```
+
+- **Repo Note:**
+
+Optional
+
+
+**Note**: The `CLAUDE.md` file containing project-specific knowledge and guidelines is automatically imported by Devin.
+
 ## Code Quality Tools
 
 - **Formatting**: Prettier (client) and Ruff (server) - `yarn format:all`
