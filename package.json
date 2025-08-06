@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "echo \"Please wait a few seconds until db starts up, before using the dev servers\" && concurrently \"docker compose up\" \"yarn workspace server dev\" \"yarn workspace client dev\" --names \"🐳,🗄️ ,🖥️ \"",
+    "dev:all": "echo \"Please wait a few seconds until db starts up, before using the dev servers\" && concurrently \"docker compose up\" \"wait-on tcp:5432 && yarn workspace server dev\" \"wait-on tcp:5432 && yarn workspace client dev\" --names \"🐳,🗄️ ,🖥️ \"",
     "formatcheck:all": "yarn workspaces foreach --all -p run formatcheck",
     "typecheck:all": "yarn workspaces foreach --all -p run typecheck",
     "lint:all": "yarn workspaces foreach --all -p run lint",
@@ -19,6 +19,7 @@
     "node": ">=20.0.0"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "wait-on": "^8.0.4"
   }
 }
