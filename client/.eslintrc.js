@@ -16,7 +16,7 @@ module.exports = {
     "next",
     "next/core-web-vitals",
   ],
-  plugins: ["@typescript-eslint", "sonarjs", "jsx-expressions"],
+  plugins: ["sonarjs", "jsx-expressions"],
   rules: {
     // Disable prop-types as we use TypeScript for type checking
     "@typescript-eslint/explicit-function-return-type": "off",
