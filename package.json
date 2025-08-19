@@ -1,25 +1,50 @@
 {
-  "name": "create-sds-app-with-batteries-with-fastapi",
+  "name": "create-sds-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:all": "echo \"Please wait a few seconds until db starts up, before using the dev servers\" && concurrently \"docker compose up\" \"wait-on tcp:5434 && yarn workspace server dev\" \"wait-on tcp:5434 && yarn workspace client dev\" --names \"🐳,🗄️ ,🖥️ \"",
-    "formatcheck:all": "yarn workspaces foreach --all -p run formatcheck",
-    "typecheck:all": "yarn workspaces foreach --all -p run typecheck",
-    "lint:all": "yarn workspaces foreach --all -p run lint",
-    "format:all": "yarn workspaces foreach --all -p run format",
-    "generate": "yarn workspace client generate"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "workspaces": [
-    "client",
-    "server"
-  ],
-  "packageManager": "yarn@4.1.1",
-  "engines": {
-    "node": ">=20.0.0"
+  "dependencies": {
+    "@czi-sds/components": "^22.11.3",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/base": "^5.0.0-beta.30",
+    "@mui/icons-material": "^5.15.3",
+    "@mui/lab": "^5.0.0-alpha.159",
+    "@mui/material": "^5.15.3",
+    "@mui/material-nextjs": "^6.4.3",
+    "@mui/utils": "^6.4.3",
+    "next": "^15.1.7",
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1",
+    "react-redux": "^9.1.0",
+    "typescript": "5.3.3"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "wait-on": "^8.0.4"
-  }
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8",
+    "eslint-config-next": "^14.1.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jsx-expressions": "^1.3.2",
+    "eslint-plugin-mdx": "^2.2.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-sonarjs": "^0.23.0",
+    "prettier": "^3.1.0",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "stylelint": "^15.11.0",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "packageManager": "yarn@4.1.1"
 }

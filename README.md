@@ -1,112 +1,51 @@
-# Create SDS App Template With FastAPI
+# Create SDS App Template
 
-## Prerequisites
+## Project Status
 
-- Node.js v20 or above
-- Yarn v4
-- uv v0.7.5 or above (Python package manager)
-- Docker and Docker Compose
+**⚠️ Unstable. Early, active development, and may lack sufficient end-user documentation, assistance, etc., for anything other than the earliest adopters.**
 
-## TODO
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-- [x] Automatic FastAPI type generation for TypeScript
-- [ ] Okta auth
-- [ ] Mock users
-- [ ] Cypress setup
+## Getting Started
 
-## Development Setup
+1. Create a new project: Run `npx create-next-app --example https://github.com/chanzuckerberg/create-sds-app YOUR_PROJECT_NAME`
+2. `cd` into the new project directory and run `yarn && yarn dev` to start developing the app!
 
-1. Install client dependencies:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-yarn install
-```
+### Light Mode
+<p align="center">
+  <img width="800" alt="Light Mode" src="https://github.com/user-attachments/assets/41259e44-e19f-4eeb-8d67-5871ae884c4a">
+</p>
 
-2. Install server dependencies:
+### Dark Mode
+<p align="center">
+  <img width="800" alt="Dark Mode" src="https://github.com/user-attachments/assets/ba8c3d19-d8ce-4b23-adc3-0d45742a3f81">
+</p>
 
-```bash
-cd server && uv sync
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-3. Make sure Docker is running (required for PostgreSQL database)
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-4. Run the development server (which runs the client, server, and database):
+## Learn More
 
-```bash
-# This command can be ran from anywhere in the project
-yarn dev:all
-```
+To learn more about Next.js, take a look at the following resources:
 
-The Next.js app will be available at `http://localhost:3000`, the FastAPI server will be available at `http://localhost:8000`, and the database admin interface at `http://localhost:8000/admin`.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-### TypeScript Type Generation from OpenAPI
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-This project automatically generates TypeScript types from the FastAPI OpenAPI schema:
+## Deploy on Vercel
 
-```bash
-# Generate types manually (can be run from anywhere in the project)
-yarn generate
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-The generated types are saved to `client/src/api/generated/types.ts` and provide full type safety when using the `openapi-fetch` client.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-**Note:** Make sure the FastAPI server is running on `http://localhost:8000` before generating types. You'll need to run this after making changes to your FastAPI endpoints.
+## Code of Conduct
 
-### Claude Code Integration
+This project adheres to the Contributor Covenant [code of conduct](https://github.com/chanzuckerberg/.github/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [opensource@chanzuckerberg.com](mailto:opensource@chanzuckerberg.com).
 
-This project includes Claude Code hooks that automatically run linting, type checking, and format checking after file modifications.
+## Reporting Security Issues
 
-To activate the hooks:
-1. Run `/hooks` in Claude Code
-2. Press Enter on "PostToolUse" to accept the hook (this is a safety confirmation)
-3. Restart Claude Code to ensure the hooks are fully loaded
-
-**Important:** If you modify the hook scripts (`.claude/hooks/`), you need to repeat these steps to reload the updated hooks.
-
-**Note:** These hooks only run when using Claude Code. They don't affect regular development or git commits.
-
-### Devin AI Integration
-
-During the "Repo Setup" step in Devin, use the following configuration:
-
-- **Pull Latest Repo**: 
-
-(Leave as is)
-
-- **Update Dependencies**: 
-```
-yarn install && cd server && uv sync
-```
-
-- **Run Lint**: (put as separate commands in the list) 
-```
-yarn workspace client lint --fix
-yarn workspace server lint --fix
-yarn format:all
-yarn lint:all
-yarn typecheck:all
-```
-
-- **Run Tests**:
-
-None
-
-- **Run App**:
-```
-yarn dev:all
-```
-
-- **Repo Note:**
-
-Optional
-
-
-**Note**: The `CLAUDE.md` file containing project-specific knowledge and guidelines is automatically imported by Devin.
-
-## Code Quality Tools
-
-- **Formatting**: Prettier (client) and Ruff (server) - `yarn format:all`
-- **Linting**: ESLint (client) and Ruff (server) - `yarn lint:all`
-- **Type Checking**: TypeScript (client) and mypy (server) - `yarn typecheck:all`
-
-Run format checks without modifying files: `yarn formatcheck:all`
+If you believe you have found a security issue, please responsibly disclose by contacting us at [security@chanzuckerberg.com](mailto:security@chanzuckerberg.com).
